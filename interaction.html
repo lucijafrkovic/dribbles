@@ -16,13 +16,14 @@
 				font-family: 'Open Sans', sans-serif;
 			}
 
-			body {
+			/*body {
 				margin-top: 10px;
-			}
+			}*/
 
 			/*1. tables*/
 			.table caption {
 				font-size:18px;
+				color: #222;
 			}
 
 			/* Zebra striping */
@@ -53,7 +54,7 @@
 			only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width:1024px) {
 
 				.container {
-					margin: 20px;
+					margin: 0 10px 0 10px;
 				}
 
 				/*Set up tables not to act like tables*/
@@ -73,11 +74,7 @@
 					left:-9999px;
 				}
 
-				/*tr {
-					border 1px solid #ccc;
-				}*/
-
-				.leads td {
+				.leads td, .campaigns td {
 					border: none;
 					border-bottom: 1px solid #eee;
 					position: relative;
@@ -99,15 +96,32 @@
 					visibility: hidden;
 				}
 
-				.leads td:nth-of-type(1):before { content: "Campaign name"; }
-				.leads td:nth-of-type(2):before { content: "Date"; }
-				.leads td:nth-of-type(3):before { content: "RM"; }
-				/*.leads td:nth-of-type(4):before { content: "Contact person"; }*/
+				.leads td:nth-of-type(1):before { content: "Campaign name"; color: #777;}
+				.leads td:nth-of-type(2):before { content: "Date"; color: #777;}
+				.leads td:nth-of-type(3):before { content: "RM"; color: #777;}
+				.leads td:nth-of-type(4):before { content: "Contact person"; color: #777;}
+
+				.campaigns td:nth-of-type(1):before { content: "Campaign name"; color: #777;}
+				.campaigns td:nth-of-type(2):before { content: "Date"; color: #777;}
+				.campaigns td:nth-of-type(3):before { content: "RM"; color: #777;}
+				.campaigns td:nth-of-type(4):before { content: "Contact person"; color: #777;}
 
 				/*action div*/
 				.actions input {
-					margin: 0 5px 0 5px;
+					margin: 0 15px 0 15px;
+					
 				}
+
+				.actions span {
+					display: inline-block;
+					text-align: center;
+				}
+
+				.actions a {
+					display: block;
+				}
+
+
 			}
 
 
@@ -115,8 +129,40 @@
 
 	</head>
 	
-	<body class="container">
-		<div class="row">
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#">CR-ISP mobile</a>
+			    </div>
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			    	<ul class="nav navbar-nav">
+			    		<li class="dropdown">
+			    			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Activity planner <span class="caret"></span></a>
+			    			<ul class="dropdown-menu">
+					            <li><a href="#">Dasboard</a></li>
+					            <li><a href="#">Set up a reminder</a></li>
+				          	</ul>
+			    		</li>
+			        	<li class="dropdown">
+			          		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CBA <span class="caret"></span></a>
+			          		<ul class="dropdown-menu">
+					            <li><a href="#">Find a customer</a></li>
+					            <li><a href="#">Find a contact person</a></li>
+				          	</ul>
+			        	</li>
+			      	</ul>
+			    </div><!-- /.navbar-collapse -->
+			</div>
+		</nav>
+
+		<div class="container">
 			<ul class="list-unstyled customer">
 				<li>
 					<span class="emphasize name">Mark Jacob Frankenberg</span>
@@ -144,11 +190,19 @@
 			</ul>
 			
 			<div class="row text-center actions">
-				<input type="image" src="icons/money.png" width=40 height=40/>
-				<input type="image" src="icons/bell.png" width=40 height=40/>
-				<input type="image" src="icons/calendar.png" width=40 height=40/>
+				<span>
+					<input type="image" src="icons/money.png" width=40 height=40/>
+					<a>Offer</a>
+				</span>
+				<span>
+					<input type="image" src="icons/bell.png" width=40 height=40/>
+					<a>Reminder</a>
+				</span>
+				<span>
+					<input type="image" src="icons/calendar.png" width=40 height=40/>
+					<a>Meeting</a>
+				</span>
 			</div>
-			<hr>
 
 			<table class="table leads">
 				<caption>Leads</caption>
@@ -181,8 +235,6 @@
 					</tr>
 				</tbody>
 			</table>
-
-			<hr>
 
 			<table class="table campaigns">
 				<caption>Campaigns</caption>
