@@ -21,8 +21,8 @@
 			}
 
 			/*1. tables*/
-			.table > caption {
-				font-size:15px;
+			.table caption {
+				font-size:18px;
 			}
 
 			/* Zebra striping */
@@ -62,8 +62,10 @@
 				}
 
 				table {
+					border-collapse: separate;
 					empty-cells: hide;
 				}
+
 
 				thead tr {
 					position: absolute;
@@ -96,7 +98,12 @@
 				.leads td:nth-of-type(1):before { content: "Campaign name"; }
 				.leads td:nth-of-type(2):before { content: "Date"; }
 				.leads td:nth-of-type(3):before { content: "RM"; }
-				.leads td:nth-of-type(4):before { content: "Contact person"; }
+				/*.leads td:nth-of-type(4):before { content: "Contact person"; }*/
+
+				/*action div*/
+				.actions input {
+					margin: 0 5px 0 5px;
+				}
 			}
 
 
@@ -131,7 +138,12 @@
 					Yes
 				</li>
 			</ul>
-
+			
+			<div class="row text-center actions">
+				<input type="image" src="icons/money.png" width=40 height=40/>
+				<input type="image" src="icons/bell.png" width=40 height=40/>
+				<input type="image" src="icons/calendar.png" width=40 height=40/>
+			</div>
 			<hr>
 
 			<table class="table leads">
