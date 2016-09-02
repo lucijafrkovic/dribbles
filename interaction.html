@@ -25,6 +25,11 @@
 				font-size:15px;
 			}
 
+			/* Zebra striping */
+			tr:nth-of-type(odd) { 
+				background: #eee; 
+			}
+
 
 
 
@@ -56,11 +61,42 @@
 					display: block;
 				}
 
+				table {
+					empty-cells: hide;
+				}
+
 				thead tr {
 					position: absolute;
 					top: -9999px;
 					left:-9999px;
 				}
+
+				/*tr {
+					border 1px solid #ccc;
+				}*/
+
+				.leads td {
+					border: none;
+					border-bottom: 1px solid #eee;
+					position: relative;
+					padding-left: 50% !important;
+				}
+
+				td:before {
+					/* Now like a table header */
+					position: absolute;
+					/* Top/left values mimic padding */
+					top: 6px;
+					left: 6px;
+					width: 45%;
+					padding-right: 10px;
+					white-space: nowrap;
+				}
+
+				.leads td:nth-of-type(1):before { content: "Campaign name"; }
+				.leads td:nth-of-type(2):before { content: "Date"; }
+				.leads td:nth-of-type(3):before { content: "RM"; }
+				.leads td:nth-of-type(4):before { content: "Contact person"; }
 			}
 
 
@@ -98,7 +134,7 @@
 
 			<hr>
 
-			<table class="table">
+			<table class="table leads">
 				<caption>Leads</caption>
 				<thead>
 					<tr>
@@ -132,7 +168,7 @@
 
 			<hr>
 
-			<table class="table">
+			<table class="table campaigns">
 				<caption>Campaigns</caption>
 				<thead>
 					<tr>
