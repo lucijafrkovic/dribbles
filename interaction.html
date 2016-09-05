@@ -24,24 +24,12 @@
 			.table caption {
 				font-size:18px;
 				color: #222;
-			}
+			}b
 
 			/* Zebra striping */
 			tr:nth-of-type(odd) { 
 				background: #eee; 
 			}
-
-
-
-
-			/*.list-unstyled .customer > li > label {
-				display: block !important;
-			}
-
-			label {
-				display: block !important;
-			}
-*/
 
 			span.emphasize {
 				font-size: 20px;
@@ -53,20 +41,23 @@
 			@media
 			only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width:1024px) {
 
+				.collapsing {
+				    transition: height 0.6s;
+				}
+
+				tr:nth-of-type(odd) { 
+					background: #eee; 
+				}
+
 				.container {
 					margin: 0 10px 0 10px;
 				}
+
 
 				/*Set up tables not to act like tables*/
 				table, thead, tbody, th, td, tr {
 					display: block;
 				}
-
-				table {
-					border-collapse: separate;
-					empty-cells: hide;
-				}
-
 
 				thead tr {
 					position: absolute;
@@ -74,7 +65,7 @@
 					left:-9999px;
 				}
 
-				.leads td, .campaigns td {
+				.leads td:not(.collapsed), .campaigns td {
 					border: none;
 					border-bottom: 1px solid #eee;
 					position: relative;
@@ -96,7 +87,7 @@
 					visibility: hidden;
 				}
 
-				.leads td:nth-of-type(1):before { content: "Campaign name"; color: #777;}
+				.leads td:nth-of-type(1):not(.collapsed):before { content: "Campaign name"; color: #777;}
 				.leads td:nth-of-type(2):before { content: "Date"; color: #777;}
 				.leads td:nth-of-type(3):before { content: "RM"; color: #777;}
 				.leads td:nth-of-type(4):before { content: "Contact person"; color: #777;}
@@ -124,8 +115,15 @@
 
 			}
 
-
 		</style>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".clickable").click(function(){
+					$(this).toggleClass('collapsed');
+				});
+			});
+		</script>
 
 	</head>
 	
@@ -203,6 +201,41 @@
 					<a>Meeting</a>
 				</span>
 			</div>
+
+			<table class="table leads">
+				<caption>Leads</caption>
+				<thead>
+					<tr>
+						<th>Campaign name</th>
+						<th>Date</th>
+						<th>RM</th>
+						<th>Contact person</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td data-toggle="collapse" data-target=".1" class="clickable collapsed">	<span class="content">Buy everything now*</span>
+						</td>
+						<td class="1 collapse">26.09.2016</td>
+						<td class="1 collapse">Johnny Walker</td>
+						<td class="1 collapse">The Boss</td>
+					</tr>
+					<tr>
+						<td data-toggle="collapse" data-target=".2" class="clickable collapsed">	<span class="content">Revolving cards</span>
+						</td>
+						<td class="2 collapse">20.11.2016</td>
+						<td class="2 collapse">Johnny Walker</td>
+						<td class="2 collapse">Margaret Bullioise</td>
+					</tr>
+					<tr>
+						<td data-toggle="collapse" data-target=".3" class="clickable collapsed">	<span class="content">Loan repayement</span>
+						</td>
+						<td class="3 collapse">26.12.2016</td>
+						<td class="3 collapse">Johnny Walker</td>
+						<td class="3 collapse"></td>
+					</tr>
+				</tbody>
+			</table>
 
 			<table class="table leads">
 				<caption>Leads</caption>
