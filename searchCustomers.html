@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-1.12.0.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+		<style type="text/css">
+
+			/* 0. document init*/
+			html, body {
+				font-family: 'Open Sans', sans-serif;
+			}
+
+			/*body {
+				margin-top: 10px;
+			}*/
+
+			/*1. tables*/
+			.table caption {
+				font-size:18px;
+				color: #222;
+			}b
+
+			/* Zebra striping */
+			tr:nth-of-type(odd) { 
+				background: #eee; 
+			}
+
+			span.emphasize {
+				font-size: 20px;
+				font-weight: bolder;
+			}
+
+
+			/*3. mobile only*/
+			@media
+			only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width:1024px) {
+
+				.collapsing {
+				    transition: height 0.6s;
+				}
+
+				tr:nth-of-type(odd) { 
+					background: #eee; 
+				}
+
+				.container {
+					margin: 0 10px 0 10px;
+				}
+
+
+				/*Set up tables not to act like tables*/
+				table, thead, tbody, th, td, tr {
+					display: block;
+				}
+
+				thead tr {
+					position: absolute;
+					top: -9999px;
+					left:-9999px;
+				}
+
+				.leads td:not(.collapsed), .campaigns td {
+					border: none;
+					border-bottom: 1px solid #eee;
+					position: relative;
+					padding-left: 50% !important;
+				}
+
+				td:before {
+					/* Now like a table header */
+					position: absolute;
+					/* Top/left values mimic padding */
+					top: 6px;
+					left: 6px;
+					width: 45%;
+					padding-right: 10px;
+					white-space: nowrap;
+				}
+
+				td:empty {
+					visibility: hidden;
+				}
+
+				.leads td:nth-of-type(1):not(.collapsed):before { content: "Campaign name"; color: #777;}
+				.leads td:nth-of-type(2):before { content: "Date"; color: #777;}
+				.leads td:nth-of-type(3):before { content: "RM"; color: #777;}
+				.leads td:nth-of-type(4):before { content: "Contact person"; color: #777;}
+
+				.campaigns td:nth-of-type(1):before { content: "Campaign name"; color: #777;}
+				.campaigns td:nth-of-type(2):before { content: "Date"; color: #777;}
+				.campaigns td:nth-of-type(3):before { content: "RM"; color: #777;}
+				.campaigns td:nth-of-type(4):before { content: "Contact person"; color: #777;}
+
+				/*action div*/
+				.actions input {
+					margin: 0 15px 0 15px;
+					
+				}
+
+				.actions span {
+					display: inline-block;
+					text-align: center;
+				}
+
+				.actions a {
+					display: block;
+				}
+
+
+			}
+
+		</style>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".clickable").click(function(){
+					$(this).toggleClass('collapsed');
+				});
+			});
+		</script>
+
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#">CR-ISP mobile</a>
+			    </div>
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			    	<ul class="nav navbar-nav">
+			    		<li class="dropdown">
+			    			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Activity planner <span class="caret"></span></a>
+			    			<ul class="dropdown-menu">
+					            <li><a href="#">Dasboard</a></li>
+					            <li><a href="#">Set up a reminder</a></li>
+				          	</ul>
+			    		</li>
+			        	<li class="dropdown">
+			          		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CBA <span class="caret"></span></a>
+			          		<ul class="dropdown-menu">
+					            <li><a href="#">Find a customer</a></li>
+					            <li><a href="#">Find a contact person</a></li>
+				          	</ul>
+			        	</li>
+			      	</ul>
+			    </div><!-- /.navbar-collapse -->
+			</div>
+		</nav>
+
+		<div class="container">
+			<form>
+				<div class="form-group">
+					<label for="documentNo">Document number</label>
+					<input type="number" id="documentNo" class="form-control" placeholder="Document number"/>
+				</div>
+				<div class="form-group">
+					<label for="custId">Customer ID</label>
+					<input type="number" id="custId" class="form-control" placeholder="Customer ID"/>
+				</div>
+				<div class="form-group">
+					<label for="SNDG">SNDG</label>
+					<input type="number" id="SNDG" class="form-control" placeholder="SNDG"/>
+				</div>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" id="name" class="form-control" placeholder="Name"/>
+				</div>
+				<div class="form-group">
+					<label for="address">Address</label>
+					<input type="text" id="address" class="form-control" placeholder="address"/>
+				</div>
+				<div class="form-group">
+					<label for="city">City</label>
+					<input type="text" id="city" class="form-control" placeholder="city"/>
+				</div>
+				<div class="form-group">
+					<label for="phone">Phone</label>
+					<input type="number" id="phone" class="form-control" placeholder="phone"/>
+				</div>
+				<button type="submit" class="btn btn-primary">Search</button>
+			</form>
+		</div>
+	</body>
+</html>
