@@ -87,6 +87,23 @@
 					visibility: hidden;
 				}
 
+				.cellCaret {
+					float: right;
+					-webkit-transition: 100ms ease-in-out;
+				    -moz-transition: 100ms ease-in-out;
+				    -o-transition: 100ms ease-in-out;
+				    transition: 100ms ease-in-out;
+				}
+
+				.caretUp {
+					transform: rotate(180deg);
+				}
+
+				.subtitle {
+					color: grey;
+				}
+
+
 				.leads td:nth-of-type(1):not(.collapsed):before { content: "Campaign name"; color: #777;}
 				.leads td:nth-of-type(2):before { content: "Date"; color: #777;}
 				.leads td:nth-of-type(3):before { content: "RM"; color: #777;}
@@ -113,14 +130,22 @@
 				}
 
 
+
 			}
 
 		</style>
 
 		<script type="text/javascript">
 			$(document).ready(function(){
+				var tr = $("tr");
+				tr.each(function(index){
+					$(this).find(".subtitle.left").text($(this).find(".subtitle-left-content").text());
+				});
+				//$("tr .subtitle.left").text($("tr .subtitle-left-content").text());
 				$(".clickable").click(function(){
 					$(this).toggleClass('collapsed');
+					$(this).find('.cellCaret').toggleClass('caretUp');
+					$(this).find(".subtitle.left").toggle();
 				});
 			});
 		</script>
@@ -214,23 +239,29 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td data-toggle="collapse" data-target=".1" class="clickable collapsed">	<span class="content">Buy everything now*</span>
+						<td data-toggle="collapse" data-target=".1" class="clickable collapsed">	<div class="content">Buy everything now*</div>
+							<span class="subtitle left"></span>
+							<span class="cellCaret caret"></span>
 						</td>
-						<td class="1 collapse">26.09.2016</td>
+						<td class="1 collapse subtitle-left-content">26.09.2016</td>
 						<td class="1 collapse">Johnny Walker</td>
 						<td class="1 collapse">The Boss</td>
 					</tr>
 					<tr>
-						<td data-toggle="collapse" data-target=".2" class="clickable collapsed">	<span class="content">Revolving cards</span>
+						<td data-toggle="collapse" data-target=".2" class="clickable collapsed">	<div class="content">Revolving cards</div>
+							<span class="subtitle left"></span> 
+							<span class="cellCaret caret"></span>
 						</td>
-						<td class="2 collapse">20.11.2016</td>
+						<td class="2 collapse subtitle-left-content">20.11.2016</td>
 						<td class="2 collapse">Johnny Walker</td>
 						<td class="2 collapse">Margaret Bullioise</td>
 					</tr>
 					<tr>
-						<td data-toggle="collapse" data-target=".3" class="clickable collapsed">	<span class="content">Loan repayement</span>
+						<td data-toggle="collapse" data-target=".3" class="clickable collapsed">	<div class="content">Loan repayement</div> 
+							<span class="subtitle left"></span>
+							<span class="cellCaret caret"></span>
 						</td>
-						<td class="3 collapse">26.12.2016</td>
+						<td class="3 collapse subtitle-left-content">26.12.2016</td>
 						<td class="3 collapse">Johnny Walker</td>
 						<td class="3 collapse"></td>
 					</tr>
