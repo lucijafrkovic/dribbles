@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Knockout table template</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js'></script>
+</head>
+<body>
+	<table data-bind="crispTable: leadsTable">
+	</table>
+</body>
+<script type="text/javascript">
+	ko.bindingHandlers.crispTable = {
+		init: function(element, valueAccessor, allBindings){
+			var table = $(element);
+			var tableMetaData = ko.unwrap(valueAccessor()); // table meta data
+			
+			if (element == null || !table.is("table")) {
+				throw new Error('crispTable not bound to table element');
+			}
+
+			//proceed if data was actually sent
+			if (tableMetaData != null){
+
+				//check for a table caption
+				if (tableMetaData.name != null && $.type(tableMetaData.name) === 'string'  && tableMetaData.name.length > 0 ){
+					table.append('<caption>' + tableMetaData.name + '</caption>');
+				}
+
+				//prepare columns
+				if ($.type(tableMetaData.columns) === 'array' && tableMetaData.columns.length > 0){
+					table.append('<thead><tr></tr></thead>');
+					var columnRow = table.find('thead tr');
+
+					$.each(tableMetaData.columns, function(index, col){
+
+						//append a table header column to the end of the header and store it
+						columnRow.append("<th></th>");
+						var column = columnRow.find("th").last();
+
+						if (col.class != empty && $.type(col.class) === 'string'){
+							column.addClass(col.class);
+						}
+
+						if (col.id != empty && $.type(col.id) === 'string'){
+							column.attr("data-id", col.id);
+						}
+
+						if (col.sortby != empty && $.type(col.sortby) === 'string'){
+							column.attr("data-sort", col.sortby);
+						}
+					});
+				}
+
+				//display rows
+				
+			}
+		}
+	}
+
+	var vm = {
+		leadsTable: {
+			name: "Leads",
+			columns: [
+				{
+					name: "Product",
+					sortby: "product_id",
+					class: "string",
+					id: 'product'
+					//,
+					//value: get values from tableData.leads
+				}, 
+				{
+					name: "Phase",
+					sortby: "phase_id",
+					class: "string",
+					id: 'phase'
+					/*value: phaseName(tableData.leads.phase),
+					click: 
+					{
+						url: "changeLeadPhase.html?leadId="+tableData.leads.id,
+						behave: "dialog"
+					}*/
+
+				}
+			]
+		}
+	}
+	
+	var tableData = [
+		{
+			customer: 
+			{
+				name: "Lucija",
+				surname: "Frkovic",
+				id: 3650336
+			},
+			leads: [
+				{
+					id: 123,
+					product: {
+						id: 1,
+						name: "Cosgrove loan"
+					},	
+					volume: 12000,
+					phase: 3,
+				},
+				{
+					id: 28,
+					product: {
+						id: 2,
+						name: "Visa debit card"
+					},	
+					phase: 2,
+				}
+			]
+		}
+	];
+
+	ko.applyBindings(vm);
+
+</script>
+
+</html>
